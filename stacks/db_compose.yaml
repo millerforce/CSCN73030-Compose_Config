@@ -1,0 +1,16 @@
+# Run within portainer and set env variables with portainer
+
+services:
+  database:
+    image: postgres
+    restart: unless-stopped
+    shm_size: 128mb
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  
+volumes:
+  postgres_data:
