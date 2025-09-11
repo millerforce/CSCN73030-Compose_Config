@@ -1,0 +1,13 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - portainer_data:/data
+      - /run/podman/podman.sock:/var/run/docker.sock:Z
+    restart: unless-stopped
+
+volumes:
+  portainer_data:
