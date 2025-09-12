@@ -2,6 +2,7 @@
 
 services:
   wiki_db:
+    container_name: wiki_db
     image: postgres
     restart: unless-stopped
     shm_size: 128mb
@@ -15,6 +16,7 @@ services:
       - "5432:5432"
   
   wiki:
+    container_name: wiki
     image: requarks/wiki:2
     depends_on:
       - wiki_db
