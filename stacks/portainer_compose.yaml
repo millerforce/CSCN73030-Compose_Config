@@ -8,6 +8,7 @@ services:
       - portainer_data:/data
       - /run/podman/podman.sock:/var/run/docker.sock:Z
     restart: unless-stopped
+    privileged: true
 
 volumes:
   portainer_data:
