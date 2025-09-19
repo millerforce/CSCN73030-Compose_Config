@@ -27,8 +27,8 @@ services:
       - "443:443" # HTTPS
       - "81:81" # Admin Web Page
     volumes:
-      - nginx_data/data:/data
-      - nginx_data/letsencrypt:/etc/letsencrypt
+      - nginx_data:/data
+      - nginx_letsencrypt:/etc/letsencrypt
     networks:
       - proxy_net
   
@@ -45,6 +45,7 @@ services:
 volumes:
   postgres_main_data:
   nginx_data:
+  nginx_letsencrypt:
   uptime_data:
 
 networks:
