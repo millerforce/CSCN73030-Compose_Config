@@ -1,0 +1,52 @@
+# This is the main docker stack for our provided tools
+services:
+  
+  # This is the main postgresql server to be provided to teams
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_main_data:/var/lib/postgresql/data
+    ports: # Expose for now but move to behind proxy
+      - "5432:5432"
+    networks:
+      - proxy_net
+  
+  # The reverse proxy that will act as the gateway for all services
+  nginx_proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80" # HTTP
+      - "443:443" # HTTPS
+      - "81:81" # Admin Web Page
+    volumes:
+      - nginx_data/data:/data
+      - nginx_data/letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy_net
+  
+  # An uptime monitor that can track the status of applications and send notifications
+  uptime-kuma:
+    image: louislam/uptime-kuma
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - uptime_data:/app/data
+    networks:
+      - proxy_net
+
+volumes:
+  postgres_main_data:
+  nginx_data:
+  uptime_data:
+
+networks:
+  proxy_net: # The main network for proxied services
+  monitoring_net:
