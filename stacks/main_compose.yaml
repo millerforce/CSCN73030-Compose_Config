@@ -41,6 +41,8 @@ services:
       - uptime_data:/app/data
     networks:
       - proxy_net
+    environment:
+      - BASE_PATH=/uptime
 
 volumes:
   postgres_main_data:
