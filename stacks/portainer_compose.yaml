@@ -9,6 +9,12 @@ services:
       - /run/podman/podman.sock:/var/run/docker.sock:Z
     restart: unless-stopped
     privileged: true
+    networks:
+      - proxy_net
 
 volumes:
   portainer_data:
+
+networks:
+  proxy_net: # The main network for proxied services
+    external: true
