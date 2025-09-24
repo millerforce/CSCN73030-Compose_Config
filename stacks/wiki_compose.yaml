@@ -31,11 +31,11 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - proxy_net
+      - main-stack_proxy_net
 
 volumes:
   postgres_data:
 
 networks:
-  proxy_net: # The main network for proxied services
+  main-stack_proxy_net: # The main network for proxied services
     external: true
