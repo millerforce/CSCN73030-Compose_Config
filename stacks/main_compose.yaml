@@ -54,4 +54,6 @@ volumes:
 
 networks:
   proxy_net: # The main network for proxied services
+    driver: bridge
+    
   monitoring_net:
