@@ -12,9 +12,8 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     networks:
+      - default
       - main-stack_proxy_net
   
   wiki:
@@ -33,11 +32,14 @@ services:
     ports:
       - "3000:3000"
     networks:
+      - default
       - main-stack_proxy_net
 
 volumes:
   postgres_data:
 
 networks:
+  default:
+
   main-stack_proxy_net: # The main network for proxied services
     external: true
