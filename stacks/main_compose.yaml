@@ -41,6 +41,8 @@ services:
       - uptime_data:/app/data
     networks:
       - proxy_net
+    ports:
+      - "3001:3001"
 
 volumes:
   postgres_main_data:
