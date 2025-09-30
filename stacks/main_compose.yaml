@@ -42,7 +42,7 @@ services:
       - uptime_data:/app/data
     networks:
       - proxy_net
-      - monitoring_net
+      # - monitoring_net
     ports:
       - "3001:3001"
 
