@@ -16,7 +16,7 @@ services:
       - "5432:5432"
     networks:
       - proxy_net
-      - monitoring_net
+      # - monitoring_net
   
   # The reverse proxy that will act as the gateway for all services
   nginx_proxy:
@@ -55,4 +55,4 @@ volumes:
 networks:
   proxy_net: # The main network for proxied services
 
-  monitoring_net:
+  # monitoring_net:

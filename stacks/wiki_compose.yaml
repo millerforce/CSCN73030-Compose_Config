@@ -15,7 +15,7 @@ services:
     networks:
       - default
       - proxy_net
-      - monitoring_net  
+      # - monitoring_net  
   
   wiki:
     container_name: wiki
@@ -50,7 +50,7 @@ networks:
     external: true
 
   
-  monitoring_net:
-    name: main-stack_monitoring_net
-    external: true
+  # monitoring_net:
+  #   name: main-stack_monitoring_net
+  #   external: true
  
