@@ -15,6 +15,7 @@ services:
     networks:
       - default
       - proxy_net
+      - monitoring_net  
   
   wiki:
     container_name: wiki
