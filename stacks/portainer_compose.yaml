@@ -15,6 +15,7 @@ services:
 volumes:
   portainer_data:
     external: true
+    name: stacks_portainer_data
 
 networks:
   proxy_net: # The main network for proxied services
