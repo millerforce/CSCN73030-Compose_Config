@@ -13,7 +13,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - default
+      # - default
       - proxy_net
       # - monitoring_net  
   
@@ -33,17 +33,17 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - default
+      # - default
       - proxy_net
 
 volumes:
   postgres_data:
 
 networks:
-  default:
-    name: wiki_default
-    external: false
-    driver: bridge
+  # default:
+  #   name: wiki_default
+  #   external: false
+  #   driver: bridge
 
   proxy_net: # The main network for proxied services
     name: main-stack_proxy_net
