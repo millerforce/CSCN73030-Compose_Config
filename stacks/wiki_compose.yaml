@@ -44,4 +44,8 @@ networks:
   proxy_net: # The main network for proxied services
     name: main-stack_proxy_net
     external: true
+  
+  monitoring_net:
+    name: main-stack_monitoring_net
+    external: true
  
