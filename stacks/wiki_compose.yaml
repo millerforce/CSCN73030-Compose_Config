@@ -41,6 +41,9 @@ volumes:
 
 networks:
   default:
+    name: wiki_default
+    external: false
+    driver: bridge
 
   proxy_net: # The main network for proxied services
     name: main-stack_proxy_net
