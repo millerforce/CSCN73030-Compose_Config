@@ -4,7 +4,7 @@ services:
   wiki_db:
     container_name: wiki_db
     image: postgres
-    restart: unless-stopped
+    restart: always
     shm_size: 128mb
     environment:
       - POSTGRES_DB=wiki
@@ -28,7 +28,7 @@ services:
       - DB_USER=${POSTGRES_USER}
       - DB_PASS=${POSTGRES_PASSWORD}
       - DB_NAME=wiki
-    restart: unless-stopped
+    restart: always
     ports:
       - "3000:3000"
     networks:

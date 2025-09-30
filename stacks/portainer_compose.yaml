@@ -7,7 +7,7 @@ services:
     volumes:
       - portainer_data:/data
       - /run/podman/podman.sock:/var/run/docker.sock:Z
-    restart: unless-stopped
+    restart: always
     privileged: true
     networks:
       - proxy_net
@@ -17,4 +17,5 @@ volumes:
 
 networks:
   proxy_net: # The main network for proxied services
+    name: main-stack_proxy_net
     external: true

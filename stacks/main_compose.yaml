@@ -13,7 +13,7 @@ services:
     volumes:
       - postgres_main_data:/var/lib/postgresql/data
     ports: # Expose for now but move to behind proxy
-      - "5433:5432"
+      - "5432:5432"
     networks:
       - proxy_net
   
@@ -21,7 +21,7 @@ services:
   nginx_proxy:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginx-proxy
-    restart: unless-stopped
+    restart: always
     ports:
       - "80:80" # HTTP
       - "443:443" # HTTPS
@@ -36,7 +36,7 @@ services:
   uptime-kuma:
     image: louislam/uptime-kuma
     container_name: uptime-kuma
-    restart: unless-stopped
+    restart: always
     volumes:
       - uptime_data:/app/data
     networks:
