@@ -49,9 +49,17 @@ services:
 
 volumes:
   postgres_main_data:
+    name: main-stack_postgres_main_data
+    external: true
   nginx_data:
+    name: main-stack_nginx_data
+    external: true
   nginx_letsencrypt:
+    name: main-stack_nginx_letsencrypt
+    external: true
   uptime_data:
+    name: main-stack_uptime_data
+    external: true
 
 networks:
   proxy_net: # The main network for proxied services
