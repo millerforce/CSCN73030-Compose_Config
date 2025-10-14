@@ -11,7 +11,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - postgres_main_data:/var/lib/postgresql/data
+      - postgres_main_data:/var/lib/postgresql/data:Z
     ports: # Expose for now but move to behind proxy
       - "5432:5432"
     networks:
