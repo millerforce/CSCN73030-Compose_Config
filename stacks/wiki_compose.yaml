@@ -3,7 +3,7 @@
 services:
   wiki_db:
     container_name: wiki_db
-    image: postgres
+    image: postgres:17.0
     restart: always
     shm_size: 128mb
     environment:
