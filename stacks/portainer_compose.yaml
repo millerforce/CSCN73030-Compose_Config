@@ -2,8 +2,6 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
-    ports:
-      - "9000:9000"
     volumes:
       - portainer_data:/data
       - /run/podman/podman.sock:/var/run/docker.sock:Z
@@ -11,6 +9,8 @@ services:
     privileged: true
     networks:
       - proxy_net
+    
+    # Internal Port: 3001
 
 volumes:
   portainer_data:

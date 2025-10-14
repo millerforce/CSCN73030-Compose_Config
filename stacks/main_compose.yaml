@@ -32,6 +32,7 @@ services:
       - nginx_letsencrypt:/etc/letsencrypt
     networks:
       - proxy_net
+    # Internal Admin Port: 81
   
   # An uptime monitor that can track the status of applications and send notifications
   uptime-kuma:
@@ -43,8 +44,8 @@ services:
     networks:
       - proxy_net
       # - monitoring_net
-    ports:
-      - "3001:3001"
+
+    # Internal Port: 3001
 
 volumes:
   postgres_main_data:

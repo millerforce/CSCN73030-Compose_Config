@@ -19,14 +19,14 @@ services:
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.retention.time=15d
       - --web.listen-address=:3002
-    ports:
-      - "3002:3002"
     volumes:
       - /podman/monitoring/prometheus:/etc/prometheus:ro
       - prometheus_data:/prometheus
     networks:
       # - monitoring
       - proxy_net
+
+    # Internal Port: 3002
 
   grafana:
     image: grafana/grafana:latest
@@ -36,14 +36,14 @@ services:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - TZ=${TZ}
-    ports:
-      - "3003:3000"
     volumes:
       - grafana_data:/var/lib/grafana
     networks:
       # - proxy
       # - monitoring
       - proxy_net
+
+    # Internal Port: 3000
 
 volumes:
   prometheus_data:

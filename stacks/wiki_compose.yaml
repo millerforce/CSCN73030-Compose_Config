@@ -30,27 +30,17 @@ services:
       - DB_PASS=${POSTGRES_PASSWORD}
       - DB_NAME=wiki
     restart: always
-    ports:
-      - "3000:3000"
     networks:
       # - default
       - proxy_net
+    
+    # Internal Port: 3000
 
 volumes:
   postgres_data:
 
 networks:
-  # default:
-  #   name: wiki_default
-  #   external: false
-  #   driver: bridge
-
   proxy_net: # The main network for proxied services
     name: main-stack_proxy_net
     external: true
-
-  
-  # monitoring_net:
-  #   name: main-stack_monitoring_net
-  #   external: true
  
