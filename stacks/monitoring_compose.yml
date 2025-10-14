@@ -47,10 +47,8 @@ services:
 
 volumes:
   prometheus_data:
-    name: monitoring-stack_prometheus_data
-    external: true
+
   grafana_data:
-    name: monitoring-stack_grafana_data
 
 networks:
   proxy:
