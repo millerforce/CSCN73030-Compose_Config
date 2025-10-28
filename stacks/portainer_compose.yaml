@@ -7,6 +7,8 @@ services:
       - /run/podman/podman.sock:/var/run/docker.sock:Z
     restart: always
     privileged: true
+    environment:
+      - TRUSTED_ORIGINS=portainer.gooberapp.org
     networks:
       - proxy_net
     
