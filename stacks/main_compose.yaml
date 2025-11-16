@@ -17,6 +17,8 @@ services:
     networks:
       - proxy_net
       # - monitoring_net
+    labels:
+      - docker-volume-backup.stop-during-backup=true
   
   # The reverse proxy that will act as the gateway for all services
   nginx_proxy:
@@ -32,6 +34,8 @@ services:
       - nginx_letsencrypt:/etc/letsencrypt
     networks:
       - proxy_net
+    labels:
+      - docker-volume-backup.stop-during-backup=true
     # Internal Admin Port: 81
   
   # An uptime monitor that can track the status of applications and send notifications
@@ -44,8 +48,26 @@ services:
     networks:
       - proxy_net
       # - monitoring_net
+    labels:
+      - docker-volume-backup.stop-during-backup=true
 
     # Internal Port: 3001
+
+  # Backup all volumes to google drive
+  backup:
+    image: offen/docker-volume-backup:latest
+    restart: always
+    env_file: ./backup.env
+    volumes:
+      # Mount each named volume into /backup/<name> as read-only
+      - postgres_main_data:/backup/postgres_main_data:ro
+      - nginx_data:/backup/nginx_data:ro
+      - nginx_letsencrypt:/backup/nginx_letsencrypt:ro
+      - uptime_data:/backup/uptime_data:ro
+      - google-credentials.json:/creds/google-credentials.json:ro
+
+      # Allow stop-during-backup and label-based pre/post commands
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
   postgres_main_data:
