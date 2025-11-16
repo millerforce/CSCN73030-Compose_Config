@@ -25,6 +25,8 @@ services:
     networks:
       # - monitoring
       - proxy_net
+    labels:
+      - docker-volume-backup.stop-during-backup=true
 
     # Internal Port: 3002
 
@@ -42,8 +44,24 @@ services:
       # - proxy
       # - monitoring
       - proxy_net
+    labels:
+      - docker-volume-backup.stop-during-backup=true
 
     # Internal Port: 3000
+
+  # Backup all volumes to google drive
+  backup:
+    image: offen/docker-volume-backup:latest
+    restart: always
+    env_file: ./backup.env
+    volumes:
+      # Mount each named volume into /backup/<name> as read-only
+      - prometheus_data:/backup/postgres_main_data:ro
+      - grafana_data:/backup/nginx_data:ro
+      - google-credentials.json:/creds/google-credentials.json:ro
+
+      # Allow stop-during-backup and label-based pre/post commands
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
   prometheus_data:
